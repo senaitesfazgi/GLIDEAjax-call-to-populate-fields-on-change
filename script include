@@ -1,0 +1,17 @@
+var MrvsOnLoad = Class.create();
+MrvsOnLoad.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+
+	getfirstLastName : function(){
+		var q={};			
+		var app= this.getParameter('sysparm_ap');
+		var usr =new GlideRecord('sys_user');
+		if(usr.get(app)){
+			q.first_name = usr.first_name.toString();
+			q.last_name = usr.last_name.toString();
+			q.middle_name = usr.middle_name.toString();
+			q.email = usr.email.toString();
+			q.mobile_phone = usr.mobile_phone.toString();
+		}
+		return JSON.stringify(q);
+	},
+  });
